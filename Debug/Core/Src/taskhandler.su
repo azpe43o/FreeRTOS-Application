@@ -1,0 +1,6 @@
+taskhandler.c:35:6:MenuTask	40	static
+taskhandler.c:73:6:CmdHandlerTask	48	static
+taskhandler.c:90:5:extract_cmd	32	static
+taskhandler.c:114:6:PrintTask	32	static
+taskhandler.c:123:6:LEDTask	24	static
+taskhandler.c:135:6:ADCTask	88	static
