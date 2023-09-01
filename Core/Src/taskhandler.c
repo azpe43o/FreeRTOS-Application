@@ -23,12 +23,12 @@ int extract_cmd(command_t* cmd);
 
 const char* InvalidMessage = "Invalid Option!!!\n";
 const char * msg =	"=============================\n"
-					"        Main Menu            \n"
-					"=============================\n"
-					"Toggle LED ---------------  1\n"
-					"ADC Value ----------------- 2\n"
-					"Exit -----------------------3\n"
-					"Enter your choice here: \n";
+			"        Main Menu            \n"
+			"=============================\n"
+			"Toggle LED ---------------  1\n"
+			"ADC Value ----------------- 2\n"
+			"Exit -----------------------3\n"
+			"Enter your choice here: \n";
 
 
 
@@ -116,17 +116,14 @@ void PrintTask(void* param){
 	while(1){
 		xQueueReceive(PrintQueue, &dataBuffer, portMAX_DELAY );
 		HAL_UART_Transmit(&huart2, (uint8_t*)dataBuffer, strlen((char*)dataBuffer), HAL_MAX_DELAY );
-
 	}
 }
 
 void LEDTask(void* param){
 	while(1){
-
 		xTaskNotifyWait(0, 0, NULL, portMAX_DELAY);
 		HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
 		xTaskNotify(MenuTaskHandle, 0, eNoAction);
-
 	}
 }
 
@@ -135,11 +132,9 @@ void LEDTask(void* param){
 void ADCTask(void* param){
 	uint16_t rawValue;
 	float temp ;
-
 	char msg1[50];
 
 	while(1){
-
 		xTaskNotifyWait(0, 0, NULL, portMAX_DELAY);
 		HAL_ADC_Start(&hadc1);
 		rawValue = HAL_ADC_GetValue(&hadc1);
