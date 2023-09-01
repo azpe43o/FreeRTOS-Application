@@ -325,14 +325,12 @@ static void MX_GPIO_Init(void)
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef* huart){
 
 	if(!xQueueIsQueueFullFromISR( DataQueue )){
-		xQueueSendFromISR(DataQueue, (void*)&DataEntered, pdFALSE);
-
+	 xQueueSendFromISR(DataQueue, (void*)&DataEntered, pdFALSE);
 	}
 	else{
 		if(DataEntered =='\n'){
-
-			xQueueReceiveFromISR( DataQueue, (void *)&Dummy, NULL);
-			xQueueSendFromISR( DataQueue, (void*)&DataEntered, pdFALSE);
+		  xQueueReceiveFromISR( DataQueue, (void *)&Dummy, NULL);
+		  xQueueSendFromISR( DataQueue, (void*)&DataEntered, pdFALSE);
 		}
 	}
 	if(DataEntered =='\n'){
